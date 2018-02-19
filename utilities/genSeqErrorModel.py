@@ -51,15 +51,15 @@ if PLOT_STUFF:
 	import matplotlib.pyplot as mpl
 
 def parseFQ(inf):
-	print 'reading '+INF+'...'
-	if INF[-3:] == '.gz':
+	print 'reading '+inf+'...'
+	if inf[-3:] == '.gz':
 		print 'detected gzip suffix...'
-		f = gzip.open(INF,'r')
+		f = gzip.open(inf,'r')
 	else:
-		f = open(INF,'r')
+		f = open(inf,'r')
 
 	IS_SAM = False
-	if INF[-4:] == '.sam':
+	if inf[-4:] == '.sam':
 		print 'detected sam input...'
 		IS_SAM = True
 
@@ -86,8 +86,8 @@ def parseFQ(inf):
 				break
 
 		if actual_readlen == 0:
-			if INF[-3:] != '.gz' and not IS_SAM:
-				totalSize = os.path.getsize(INF)
+			if inf[-3:] != '.gz' and not IS_SAM:
+				totalSize = os.path.getsize(inf)
 				entrySize = sum([len(n) for n in [data1,data2,data3,data4]])
 				print 'estimated number of reads in file:',int(float(totalSize)/entrySize)
 			actual_readlen = len(data4)-1
